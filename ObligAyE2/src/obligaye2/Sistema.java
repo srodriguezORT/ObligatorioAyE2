@@ -1,15 +1,22 @@
 package obligaye2;
 
+//import static obligaye2.Cliente.esValidoEmail;
 import obligaye2.ISistema;
 import obligaye2.TipoRetorno.TipoError;
+
 
 public class Sistema implements ISistema {
 
 	@Override
 	public TipoRetorno inicializarSistema(int cantCiudadesMax, Double CoordXDestino, Double CoordYDestino,
-			String nombreCiudadDestino, Double CoordXOrigen, Double CoordYOrigen, String nombreCiudadOrigen) {
-		// TODO Auto-generated method stub
-		return new TipoRetorno(TipoError.NO_IMPLEMENTADA);
+            String nombreCiudadDestino, Double CoordXOrigen, Double CoordYOrigen, String nombreCiudadOrigen) {
+            if(cantCiudadesMax < 2){
+                return new TipoRetorno(TipoError.ERROR_1);
+            }else if (nombreCiudadDestino.equals("") || nombreCiudadOrigen.equals("")){
+                return new TipoRetorno(TipoError.ERROR_2);
+            }else{
+                return new TipoRetorno(TipoError.OK);
+            }
 	}
 
 	@Override
@@ -20,8 +27,14 @@ public class Sistema implements ISistema {
 
 	@Override
 	public TipoRetorno registrarCliente(String cedula, String nombre, String direccion, String email) {
-		// TODO Auto-generated method stub
-		return new TipoRetorno(TipoError.NO_IMPLEMENTADA);
+		
+            if(!Cliente.esValidoEmail(email)){
+                return new TipoRetorno(TipoError.ERROR_2);
+            }else if(!Cliente.esValidaCi(cedula)){
+                
+            }
+            
+            return new TipoRetorno(TipoError.NO_IMPLEMENTADA);
 	}
 
 	@Override
