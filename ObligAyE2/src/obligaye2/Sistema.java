@@ -1,11 +1,14 @@
 package obligaye2;
 
-//import static obligaye2.Cliente.esValidoEmail;
 import obligaye2.ISistema;
 import obligaye2.TipoRetorno.TipoError;
 
 
 public class Sistema implements ISistema {
+    
+    Lista<Cliente> clientes;
+    Lista<Ciudad> ciudades;
+    Lista<Vuelo> vuelos;
 
 	@Override
 	public TipoRetorno inicializarSistema(int cantCiudadesMax, Double CoordXDestino, Double CoordYDestino,
@@ -14,27 +17,35 @@ public class Sistema implements ISistema {
                 return new TipoRetorno(TipoError.ERROR_1);
             }else if (nombreCiudadDestino.equals("") || nombreCiudadOrigen.equals("")){
                 return new TipoRetorno(TipoError.ERROR_2);
-            }else{
-                return new TipoRetorno(TipoError.OK);
             }
+            ciudades = new Lista<>();
+            clientes = new Lista<>();
+            vuelos = new Lista<>();
+            return new TipoRetorno(TipoError.OK);
 	}
 
 	@Override
 	public TipoRetorno destruirSistema() {
-		// TODO Auto-generated method stub
-		return new TipoRetorno(TipoError.NO_IMPLEMENTADA);
+		ciudades = null;
+                clientes = null;
+                vuelos = null;
+		return new TipoRetorno(TipoError.OK);
 	}
 
 	@Override
 	public TipoRetorno registrarCliente(String cedula, String nombre, String direccion, String email) {
 		
-            if(!Cliente.esValidoEmail(email)){
+            if(!Cliente.esValidaCi(cedula)){
+                return new TipoRetorno(TipoError.ERROR_1);
+            }else if(!Cliente.esValidoEmail(email)){
                 return new TipoRetorno(TipoError.ERROR_2);
-            }else if(!Cliente.esValidaCi(cedula)){
-                
+            }else if(clientes.existe(new Cliente(cedula, nombre, direccion, email))){
+            return new TipoRetorno(TipoError.ERROR_3);
             }
             
-            return new TipoRetorno(TipoError.NO_IMPLEMENTADA);
+            clientes.agregarInicio(new Cliente(cedula, nombre, direccion, email));
+            return new TipoRetorno(TipoError.OK);
+            
 	}
 
 	@Override

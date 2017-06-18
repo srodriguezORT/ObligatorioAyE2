@@ -13,12 +13,14 @@ public class Cliente {
     private String nombreCliente;
     private String direccionCliente;
     private String emailCliente;
+    private Lista<Compra> compras;
 
     public Cliente(String cedulaCliente, String nombreCliente, String direccionCliente, String emailCliente) {
         this.cedulaCliente = cedulaCliente;
         this.nombreCliente = nombreCliente;
         this.direccionCliente = direccionCliente;
         this.emailCliente = emailCliente;
+        this.compras = new Lista<Compra>();
     }
 
     public String getCedulaCliente() {
@@ -52,6 +54,15 @@ public class Cliente {
     public void setEmailCliente(String emailCliente) {
         this.emailCliente = emailCliente;
     }
+
+    public Lista<Compra> getCompras() {
+        return compras;
+    }
+
+    public void setCompras(Lista<Compra> compras) {
+        this.compras = compras;
+    }
+    
     
     /**
      * Retorna true si el e-mail del cliente es válido, false en caso contrario.
