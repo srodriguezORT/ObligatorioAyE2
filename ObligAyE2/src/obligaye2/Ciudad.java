@@ -15,8 +15,7 @@ public class Ciudad {
     private Double coordX;
     private Double coordY;
 
-    public Ciudad (Double coordX, Double coordY)
-    {
+    public Ciudad (Double coordX, Double coordY){
         this.coordX = coordX;
         this.coordY = coordY;
     }

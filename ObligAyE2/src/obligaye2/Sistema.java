@@ -51,12 +51,11 @@ public class Sistema implements ISistema {
             }else if(!Cliente.esValidoEmail(email)){
                 return new TipoRetorno(TipoError.ERROR_2);
             }else if(clientes.existe(aux)){
-            return new TipoRetorno(TipoError.ERROR_3);
-            }
-            
-            clientes.agregarInicio(new Cliente(cedula, nombre, direccion, email));
-            return new TipoRetorno(TipoError.OK);
-            
+                return new TipoRetorno(TipoError.ERROR_3);
+            }else{
+                clientes.agregarInicio(new Cliente(cedula, nombre, direccion, email));
+                return new TipoRetorno(TipoError.OK);
+            }            
 	}
 
 	@Override
@@ -67,10 +66,8 @@ public class Sistema implements ISistema {
             Empresa auxE = new Empresa(empresa);
             if(clientes.existe(auxCli)){
                 return new TipoRetorno(TipoError.ERROR_1);
-            }
-            
-            if(!empresas.existe(auxE))
-            {
+            }            
+            if(!empresas.existe(auxE)){
                 empresas.agregarFin(auxE);
             }
             clientes.buscar(auxCli).getCompras().agregarFin(auxCom);
@@ -88,11 +85,11 @@ public class Sistema implements ISistema {
             }else if(Nombre.equals("")){
                 return new TipoRetorno(TipoError.ERROR_2);
             }else if(ciudades.existe(aux)){
-            return new TipoRetorno(TipoError.ERROR_3);
+                return new TipoRetorno(TipoError.ERROR_3);
+            }else{
+                ciudades.agregarInicio(new Ciudad(Nombre, coordX, coordY));
+                return new TipoRetorno(TipoError.OK);
             }
-            
-            ciudades.agregarInicio(new Ciudad(Nombre, coordX, coordY));
-            return new TipoRetorno(TipoError.OK);
 	}
 
 	@Override
@@ -107,15 +104,15 @@ public class Sistema implements ISistema {
             }else if(costo <= 0){
                 return new TipoRetorno(TipoError.ERROR_2);
             }else if(tiempo_minutos <= 0){
-            return new TipoRetorno(TipoError.ERROR_3);
+                return new TipoRetorno(TipoError.ERROR_3);
             }else if(!ciudades.existe(auxO) || !ciudades.existe(auxD)){
-            return new TipoRetorno(TipoError.ERROR_4);
+                return new TipoRetorno(TipoError.ERROR_4);
             }else if(vuelos.existe(auxV)){
-            return new TipoRetorno(TipoError.ERROR_5);
+                return new TipoRetorno(TipoError.ERROR_5);
+            }else{
+                vuelos.agregarFin(new Vuelo(coordXi, coordYi, coordXf, coordYf, capacidad_paquetes, costo, tiempo_minutos));
+                return new TipoRetorno(TipoError.OK);
             }
-            
-            vuelos.agregarFin(new Vuelo(coordXi, coordYi, coordXf, coordYf, capacidad_paquetes, costo, tiempo_minutos));
-            return new TipoRetorno(TipoError.OK);
 	}
 
 	@Override
