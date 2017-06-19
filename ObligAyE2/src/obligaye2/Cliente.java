@@ -15,6 +15,11 @@ public class Cliente {
     private String emailCliente;
     private Lista<Compra> compras;
 
+    public Cliente (String cedula)
+    {
+        this.cedulaCliente = cedula;
+    }
+    
     public Cliente(String cedulaCliente, String nombreCliente, String direccionCliente, String emailCliente) {
         this.cedulaCliente = cedulaCliente;
         this.nombreCliente = nombreCliente;
@@ -63,6 +68,19 @@ public class Cliente {
         this.compras = compras;
     }
     
+    @Override
+	public boolean equals(Object obj) {
+		if (this == obj)
+			return true;
+		if (obj == null)
+			return false;
+		if (getClass() != obj.getClass())
+			return false;
+		Cliente other = (Cliente) obj;
+		if (cedulaCliente != other.cedulaCliente)
+			return false;
+		return true;
+	}
     
     /**
      * Retorna true si el e-mail del cliente es válido, false en caso contrario.

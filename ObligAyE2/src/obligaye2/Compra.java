@@ -6,25 +6,14 @@ package obligaye2;
  */
 public class Compra {
     
-    private Cliente cliente;
     private int trackingId;
-
-    public Compra(Cliente cliente, int trackingId, String empresa) {
-        this.cliente = cliente;
-        this.trackingId = trackingId;
-        this.empresa = empresa;
-        this.enviado = false;
-    }
     private String empresa;
     private boolean enviado;
 
-    
-    public Cliente getCliente() {
-        return cliente;
-    }
-
-    public void setCliente(Cliente cliente) {
-        this.cliente = cliente;
+    public Compra(int trackingId, String empresa) {
+        this.trackingId = trackingId;
+        this.empresa = empresa;
+        this.enviado = false;
     }
 
     public int getTrackingId() {

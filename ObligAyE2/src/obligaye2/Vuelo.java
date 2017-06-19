@@ -19,6 +19,13 @@ public class Vuelo {
     private int costo;
     private int tiempo_minutos;
 
+    public Vuelo(Double coordXi, Double coordYi, Double coordXf, Double coordYf) {
+        this.coordXi = coordXi;
+        this.coordYi = coordYi;
+        this.coordXf = coordXf;
+        this.coordYf = coordYf;
+    }
+    
     public Vuelo(Double coordXi, Double coordYi, Double coordXf, Double coordYf, int capacidad_paquetes, int costo, int tiempo_minutos) {
         this.coordXi = coordXi;
         this.coordYi = coordYi;

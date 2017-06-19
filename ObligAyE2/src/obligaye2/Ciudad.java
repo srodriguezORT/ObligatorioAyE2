@@ -15,6 +15,12 @@ public class Ciudad {
     private Double coordX;
     private Double coordY;
 
+    public Ciudad (Double coordX, Double coordY)
+    {
+        this.coordX = coordX;
+        this.coordY = coordY;
+    }
+    
     public Ciudad(String nombre, Double coordX, Double coordY) {
         this.nombre = nombre;
         this.coordX = coordX;
